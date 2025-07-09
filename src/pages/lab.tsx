@@ -83,7 +83,7 @@ export default function Lab(): React.JSX.Element {
     url: string;
   }>({
     title: 'GeoDa Workbook',
-    url: './workbook/01_datawrangling_1/lab1a.html'
+    url: ''
   });
 
   useEffect(() => {
@@ -92,12 +92,19 @@ export default function Lab(): React.JSX.Element {
     const labPath = urlParams.get('lab');
     const labTitle = urlParams.get('title') || 'GeoDa Workbook';
 
-    if (labPath) {
-      setLabInfo({
-        title: labTitle,
-        url: `${labPath}`
-      });
-    }
+    // Construct the correct path for both development and production
+    // In production, we need to use absolute path from the site root
+    const baseUrl = process.env.NODE_ENV === 'production' 
+      ? '/newsite' 
+      : '.';
+    
+    // Use provided lab path or default to the first lab
+    const finalLabPath = labPath || './workbook/01_datawrangling_1/lab1a.html';
+    
+    setLabInfo({
+      title: labTitle,
+      url: `${baseUrl}/${finalLabPath}`
+    });
   }, []);
 
   return (

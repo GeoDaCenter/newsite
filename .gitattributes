@@ -1,0 +1,2 @@
+static/workbook/** filter=lfs diff=lfs merge=lfs -text
+static/docs/** filter=lfs diff=lfs merge=lfs -text

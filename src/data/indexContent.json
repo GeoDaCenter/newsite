@@ -30,7 +30,7 @@
         },
         {
           "text": "here are interim resources",
-          "href": "/documentation"
+          "href": "./documentation"
         }
       ],
       "youtubeVideo": {
@@ -248,11 +248,11 @@
     "links": [
       {
         "text": "documentation",
-        "href": "/documentation"
+        "href": "./documentation"
       },
       {
         "text": "Openspace listserv",
-        "href": "/support"
+        "href": "./support"
       }
     ]
   },

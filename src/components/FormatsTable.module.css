@@ -1,10 +1,12 @@
+/* ===== FORMATS TABLE SPECIFIC STYLES ===== */
+
 .tableSection {
   margin-bottom: 2rem;
 }
 
 .tableSection h4 {
   margin-bottom: 1rem;
-  color: #24292e;
+  color: #333333;
   font-size: 1.2rem;
   font-weight: 600;
 }
@@ -26,7 +28,7 @@
 .formatsTable th {
   background-color: #f6f8fa;
   font-weight: 600;
-  color: #24292e;
+  color: #333333;
 }
 
 .formatsTable tr:hover {
@@ -37,7 +39,8 @@
   font-weight: 500;
 }
 
-/* Responsive design */
+/* ===== RESPONSIVE DESIGN ===== */
+
 @media (max-width: 768px) {
   .formatsTable {
     font-size: 0.8rem;

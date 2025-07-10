@@ -33,190 +33,52 @@
 @import url('/normalize.css');
 @import url('/stylesheet.css');
 
-/* Original GeoDa button styles - ensuring they work in the new site */
-.btn {
-  display: inline-block;
-  margin-bottom: 1rem;
-  color: rgba(255, 255, 255, 0.7);
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 0.3rem;
-  transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+/* ===== GLOBAL STYLES ===== */
+
+/* Base typography */
+body {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px !important;
+  line-height: 1.5;
+  color: #606c71;
 }
 
-.btn + .btn {
-  margin-left: 1rem;
-}
-
-.btn:hover {
-  color: rgba(255, 255, 255, 0.8);
+/* Global link styles */
+a {
+  color: #1e6bb8;
   text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.3);
 }
 
-@media screen and (min-width: 64em) {
-  .btn {
-    padding: 0.75rem 1rem;
-  }
+a:hover {
+  text-decoration: underline;
 }
 
-@media screen and (min-width: 42em) and (max-width: 64em) {
-  .btn {
-    padding: 0.6rem 0.9rem;
-    font-size: 0.9rem;
-  }
+/* Global image styles */
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-@media screen and (max-width: 42em) {
-  .btn {
-    display: block;
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 0.9rem;
-  }
-  .btn + .btn {
-    margin-top: 1rem;
-    margin-left: 0;
-  }
+/* Global iframe styles */
+iframe {
+  max-width: 100%;
 }
 
-.download-btn {
-  background-color: rgba(76, 175, 80, 0.9);
-  color: rgba(255, 255, 255, 1);
-  border-color: rgba(20, 20, 20, 0.2);
-  text-align: center;
+/* Anchor link fixes */
+.anchor {
+  display: none;
 }
 
-.download-btn:hover {
-  background-color: rgba(76, 175, 80, 0.5);
-  color: rgba(255, 255, 255, 1);
-  border-color: rgba(20, 20, 20, 0.2);
-  text-align: center;
-}
-
-.nightly-btn {
-  background-color: rgba(100, 100, 100, 0.9);
-  color: rgba(255, 255, 255, 1);
-  border-color: rgba(20, 20, 20, 0.2);
-  text-align: center;
-}
-
-.nightly-btn:hover {
-  background-color: rgba(100, 100, 100, 0.5);
-  color: rgba(255, 255, 255, 1);
-  border-color: rgba(20, 20, 20, 0.2);
-  text-align: center;
-}
-
-.lab-btn {
-  background-color: rgba(255, 255, 255, 0.9);
-  color: rgba(0, 0, 0, 1);
-  border-color: rgba(20, 20, 20, 0.2);
-  text-align: center;
-}
-
-.lab-btn:hover {
-  background-color: rgba(200, 200, 200, 0.9);
-  color: rgba(0, 0, 0, 1);
-  border-color: rgba(20, 20, 20, 0.2);
-  text-align: center;
-}
-
-/* Global slideshow styles */
-.bss-slides {
-  position: relative;
-  overflow: hidden;
-  height: 400px;
-}
-
-.bss-slides figure {
-  margin: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.bss-slides figure:first-child {
-  position: absolute;
-}
-
-.bss-slides figcaption {
-  position: absolute;
-  top: 0.70em;
-  left: 0.35em;
-  bottom: auto !important;
-  right: auto !important;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 0.5rem;
-  border-radius: 0.3rem;
-  font-size: 0.9rem;
-}
-
-/* Slideshow navigation styles */
-.bss-slides .bss-slides-tab {
+h1:hover .anchor,
+h2:hover .anchor,
+h3:hover .anchor,
+h4:hover .anchor,
+h5:hover .anchor,
+h6:hover .anchor {
   display: inline-block;
-  width: 1em;
-  height: 1em;
-  margin: 1em;
-  text-indent: -999em;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
 }
 
-.bss-slides .bss-slides-tab:hover {
-  background: #ccc;
-}
-
-.bss-slides .bss-slides-tab.bss-slides-here {
-  background: #999;
-}
-
-.bss-slides .bss-slides-prev,
-.bss-slides .bss-slides-next {
-  position: absolute;
-  top: 50%;
-  margin-top: -1em;
-  z-index: 1;
-  height: 2em;
-  width: 2em;
-  background: #ccc;
-  color: #fff;
-  text-align: center;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.bss-slides .bss-slides-prev {
-  left: 0;
-}
-
-.bss-slides .bss-slides-next {
-  right: 0;
-}
-
-.bss-slides .bss-slides-prev:hover,
-.bss-slides .bss-slides-next:hover {
-  background: #999;
-}
-
-.bss-slides .bss-slides-prev:before {
-  content: "‹";
-  font-size: 1.5em;
-  line-height: 1.33;
-}
-
-.bss-slides .bss-slides-next:before {
-  content: "›";
-  font-size: 1.5em;
-  line-height: 1.33;
-}
+/* ===== NAVBAR STYLES ===== */
 
 /* Override Docusaurus navbar to match GeoDa style */
 .navbar {
@@ -272,7 +134,8 @@
   object-fit: contain;
 }
 
-/* Responsive logo sizing */
+/* ===== RESPONSIVE NAVBAR ===== */
+
 @media screen and (max-width: 768px) {
   .navbar__logo {
     height: 28px !important;
@@ -303,6 +166,8 @@
   }
 }
 
+/* ===== LAYOUT STYLES ===== */
+
 /* Ensure our custom components work well with Docusaurus */
 .main-wrapper {
   min-height: 100vh;
@@ -312,73 +177,6 @@
 
 .main-wrapper main {
   flex: 1;
-}
-
-/* Fix for slideshow script loading */
-.bss-slides {
-  position: relative;
-  overflow: hidden;
-}
-
-.bss-slides figure {
-  margin: 0;
-  position: relative;
-}
-
-.bss-slides figcaption {
-  position: absolute;
-  top: 0.70em;
-  left: 0.35em;
-  bottom: auto !important;
-  right: auto !important;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 0.5rem;
-  border-radius: 0.3rem;
-  font-size: 0.9rem;
-}
-
-/* Ensure proper spacing and layout */
-body {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px !important;
-  line-height: 1.5;
-  color: #606c71;
-}
-
-/* Fix for anchor links */
-.anchor {
-  display: none;
-}
-
-h1:hover .anchor,
-h2:hover .anchor,
-h3:hover .anchor,
-h4:hover .anchor,
-h5:hover .anchor,
-h6:hover .anchor {
-  display: inline-block;
-}
-
-/* Ensure proper image display */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Fix for iframe responsiveness */
-iframe {
-  max-width: 100%;
-}
-
-/* Ensure proper link styling */
-a {
-  color: #1e6bb8;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 /* Override Docusaurus main content font sizes to match original */
@@ -406,7 +204,8 @@ a:hover {
   margin-bottom: 1em !important;
 }
 
-/* Ensure proper heading sizes for different screen sizes */
+/* ===== RESPONSIVE MAIN CONTENT ===== */
+
 @media screen and (min-width: 64em) {
   .main-content h1,
   .main-content h2,

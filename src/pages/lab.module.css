@@ -1,3 +1,5 @@
+/* ===== LAB PAGE SPECIFIC STYLES ===== */
+
 .labContainer {
   background: white;
   overflow: hidden;
@@ -9,14 +11,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--background-light);
+  background: #f8f9fa;
 }
 
 .labTitle {
   margin: 0;
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--primary-color);
+  color: #159957;
 }
 
 .labActions {
@@ -30,10 +32,10 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: var(--primary-color);
+  background: #159957;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 0.3rem;
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
@@ -42,7 +44,7 @@
 }
 
 .externalButton:hover {
-  background: var(--primary-dark);
+  background: #155799;
   transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -75,7 +77,8 @@
   height: auto;
 }
 
-/* Responsive design */
+/* ===== RESPONSIVE DESIGN ===== */
+
 @media (max-width: 768px) {
   .labHeader {
     flex-direction: column;

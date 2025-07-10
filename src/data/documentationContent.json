@@ -1,15 +1,5 @@
 {
-  "hero": {
-    "title": "GeoDa",
-    "tagline": "Documentation",
-    "buttons": [
-      { "text": "Homepage", "href": "/" },
-      { "text": "Download", "href": "/download.html" },
-      { "text": "Cheat Sheet", "href": "/cheatsheet.html" },
-      { "text": "Documentation", "href": "/documentation.html" },
-      { "text": "Support", "href": "/support.html" }
-    ]
-  },
+  "tagline": "Documentation",
   "mainContent": {
     "intro": {
       "title": "GeoDa Workbook",

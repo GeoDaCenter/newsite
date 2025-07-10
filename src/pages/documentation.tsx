@@ -14,7 +14,7 @@ export default function Documentation(): React.JSX.Element {
       <main>
         <Hero
           title={siteCommon.hero.title}
-          tagline={documentationContent.hero.tagline}
+          tagline={documentationContent.tagline}
           buttons={siteCommon.hero.buttons}
         />
 

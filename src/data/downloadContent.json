@@ -82,7 +82,7 @@
     "title": "Lab Installation",
     "description": "GeoDa is available for lab use. Please use the following guide to install GeoDa on your lab computers. If you have any questions, please contact us.",
     "text": "Lab Installation Guide",
-    "href": "/lab_install.html"
+    "href": "./lab_install"
   },
   "map": {
     "title": "GeoDa Users Across the Globe"

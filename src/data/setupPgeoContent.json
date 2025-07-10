@@ -1,8 +1,5 @@
 {
-  "hero": {
-    "title": "GeoDa",
-    "tagline": "Plugins | Setup ESRI Personal Geodatabase Plugin"
-  },
+  "tagline": "Plugins | Setup ESRI Personal Geodatabase Plugin",
   "mainContent": {
     "title": "Plugins | Setup ESRI Personal Geodatabase Plugin",
     "description": [

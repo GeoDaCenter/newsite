@@ -15,7 +15,7 @@ export default function Formats(): React.JSX.Element {
       <main>
         <Hero
           title={siteCommon.hero.title}
-          tagline={formatsContent.hero.tagline}
+          tagline={formatsContent.tagline}
           buttons={siteCommon.hero.buttons}
         />
 

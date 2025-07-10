@@ -16,7 +16,7 @@ export default function SetupArcSDE(): React.JSX.Element {
       <main>
         <Hero
           title={siteCommon.hero.title}
-          tagline={setupArcsdeContent.hero.tagline}
+          tagline={setupArcsdeContent.tagline}
           buttons={siteCommon.hero.buttons}
         />
 

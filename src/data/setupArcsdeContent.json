@@ -1,8 +1,5 @@
 {
-  "hero": {
-    "title": "GeoDa",
-    "tagline": "Plugins | Setup ESRI ArcSDE Plugin"
-  },
+  "tagline": "Plugins | Setup ESRI ArcSDE Plugin",
   "mainContent": {
     "title": "Plugins | Setup ESRI ArcSDE Plugin",
     "navigation": [

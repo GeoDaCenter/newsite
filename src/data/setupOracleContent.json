@@ -1,8 +1,5 @@
 {
-  "hero": {
-    "title": "GeoDa",
-    "tagline": "Plugins | Setup Oracle Spatial Database Plugin"
-  },
+  "tagline": "Plugins | Setup Oracle Spatial Database Plugin",
   "mainContent": {
     "title": "Plugins | Setup Oracle Spatial Database Plugin",
     "navigation": [

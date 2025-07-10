@@ -1,18 +1,5 @@
 {
-  "hero": {
-    "title": "GeoDa",
-    "tagline": "Data Formats Supported in GeoDa",
-    "buttons": [
-      { "text": "Homepage", "href": "/" },
-      { "text": "Download", "href": "/download" },
-      { "text": "View on GitHub", "href": "https://github.com/GeoDaCenter/geoda/", "external": true },
-      { "text": "Data", "href": "https://geodacenter.github.io/data-and-lab/", "external": true },
-      { "text": "Cheat Sheet", "href": "/cheatsheet" },
-      { "text": "Documentation", "href": "/documentation" },
-      { "text": "Support", "href": "/support" },
-      { "text": "中文", "href": "/index-cn" }
-    ]
-  },
+  "tagline": "Data Formats Supported in GeoDa",
   "mainContent": {
     "title": "Spatial Data Format Supported by GeoDa 1.8",
     "sections": [

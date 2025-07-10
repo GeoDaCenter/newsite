@@ -16,7 +16,7 @@ export default function SetupOracle(): React.JSX.Element {
       <main>
         <Hero
           title={siteCommon.hero.title}
-          tagline={setupOracleContent.hero.tagline}
+          tagline={setupOracleContent.tagline}
           buttons={siteCommon.hero.buttons}
         />
 

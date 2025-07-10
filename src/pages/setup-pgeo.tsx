@@ -16,7 +16,7 @@ export default function SetupPgeo(): React.JSX.Element {
       <main>
         <Hero
           title={siteCommon.hero.title}
-          tagline={setupPgeoContent.hero.tagline}
+          tagline={setupPgeoContent.tagline}
           buttons={siteCommon.hero.buttons}
         />
 

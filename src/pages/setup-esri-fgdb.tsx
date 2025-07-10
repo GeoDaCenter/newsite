@@ -16,7 +16,7 @@ export default function SetupEsriFgdb(): React.JSX.Element {
       <main>
         <Hero
           title={siteCommon.hero.title}
-          tagline={setupEsriFgdbContent.hero.tagline}
+          tagline={setupEsriFgdbContent.tagline}
           buttons={siteCommon.hero.buttons}
         />
 

@@ -7,6 +7,7 @@ import VersionSection from '../components/VersionSection';
 import InstallationSection from '../components/InstallationSection';
 import downloadWindows from '../data/downloadWindows.json';
 import siteCommon from '../data/siteCommon.json';
+import { getImagePath } from '../utils/imagePath';
 
 export default function DownloadWindows(): React.JSX.Element {
   return (
@@ -70,7 +71,7 @@ export default function DownloadWindows(): React.JSX.Element {
                     {downloadWindows.systemInfo.content}
                   </p>
                   <img 
-                    src={downloadWindows.systemInfo.image} 
+                    src={getImagePath(downloadWindows.systemInfo.image)} 
                     alt="Windows system information"
                     className={styles.systemInfoImage}
                   />

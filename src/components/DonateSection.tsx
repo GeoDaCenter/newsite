@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './MainContent.module.css';
 import commonStyles from '../styles/common.module.css';
 import { processContentWithLinks } from '../utils/contentProcessor';
+import { getImagePath } from '../utils/imagePath';
 
 interface Link {
   text: string;
@@ -36,7 +37,7 @@ export default function DonateSection({ title, content, links, image, imageAlt }
       </p>
       <p>
         <a href={links[0].href}>
-          <img src={image} alt={imageAlt} />
+          <img src={getImagePath(image)} alt={imageAlt} />
         </a>
       </p>
     </section>

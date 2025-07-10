@@ -15,6 +15,14 @@ interface FormatsTableProps {
   rows: TableCell[][];
 }
 
+// Helper function to process href for production mode
+const processHref = (href: string): string => {
+  if (process.env.NODE_ENV === 'production') {
+    return href.replace(/^\.\//, '../');
+  }
+  return href;
+};
+
 export default function FormatsTable({ title, headers, rows }: FormatsTableProps): React.JSX.Element {
   return (
     <div className={styles.tableSection}>
@@ -33,7 +41,7 @@ export default function FormatsTable({ title, headers, rows }: FormatsTableProps
                   {typeof cell === 'string' ? (
                     cell
                   ) : (
-                    <a href={cell.href} target={cell.external ? '_blank' : undefined} rel={cell.external ? 'noopener noreferrer' : undefined}>
+                    <a href={processHref(cell.href)} target={cell.external ? '_blank' : undefined} rel={cell.external ? 'noopener noreferrer' : undefined}>
                       {cell.text}
                     </a>
                   )}

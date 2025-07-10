@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './SetupInstructionSection.module.css';
+import { getImagePath } from '../utils/imagePath';
 
 interface SetupInstructionSectionProps {
   id: string;
@@ -34,7 +35,7 @@ export default function SetupInstructionSection({
       </ol>
       {image && (
         <div className={styles.imageContainer}>
-          <img src={image} alt={imageAlt || title} className={styles.instructionImage} />
+          <img src={getImagePath(image)} alt={imageAlt || title} className={styles.instructionImage} />
         </div>
       )}
     </div>

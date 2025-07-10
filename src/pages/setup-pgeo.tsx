@@ -5,6 +5,7 @@ import commonStyles from '../styles/common.module.css';
 import Hero from '../components/Hero';
 import setupPgeoContent from '../data/setupPgeoContent.json';
 import siteCommon from '../data/siteCommon.json';
+import { getImagePath } from '../utils/imagePath';
 
 export default function SetupPgeo(): React.JSX.Element {
   return (
@@ -39,7 +40,7 @@ export default function SetupPgeo(): React.JSX.Element {
             <div className={styles.imageGallery}>
               {setupPgeoContent.mainContent.images.map((image, index) => (
                 <div key={index} className={styles.imageContainer}>
-                  <img src={image.src} alt={image.alt} className={styles.instructionImage} />
+                  <img src={getImagePath(image.src)} alt={image.alt} className={styles.instructionImage} />
                 </div>
               ))}
             </div>

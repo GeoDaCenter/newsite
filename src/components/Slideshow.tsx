@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './Slideshow.module.css';
+import { getImagePath } from '../utils/imagePath';
 
 // Declare the makeBSS function on window
 declare global {
@@ -70,7 +71,7 @@ export default function Slideshow({ title, description, slides }: SlideshowProps
         {slides.map((slide, index) => (
           <figure key={index}>
             <img 
-              src={slide.image} 
+              src={getImagePath(slide.image)} 
               className={`${styles.shadowfilter} ${styles.intro1}`} 
               width="100%" 
               alt={slide.alt}

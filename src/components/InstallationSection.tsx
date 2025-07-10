@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './MainContent.module.css';
 import commonStyles from '../styles/common.module.css';
+import { getImagePath } from '../utils/imagePath';
 
 interface InstallationStep {
   step: string;
@@ -49,7 +50,7 @@ export default function InstallationSection({
               <div key={index} className={styles.installationStep}>
                 <p>{step.step}</p>
                 <img 
-                  src={step.image} 
+                  src={getImagePath(step.image)} 
                   alt={`Installation step ${index + 1}`}
                   className={styles.installationImage}
                 />
@@ -73,7 +74,7 @@ export default function InstallationSection({
             return (
               <img 
                 key={index}
-                src={image} 
+                src={getImagePath(image)} 
                 alt={`Installation result ${index + 1}`}
                 className={shouldNotScale ? styles.installationImageNoScale : styles.installationImage}
               />
@@ -86,7 +87,7 @@ export default function InstallationSection({
         <div className={styles.alternativeMethod}>
           <p>{alternative.content}</p>
           <img 
-            src={alternative.image} 
+            src={getImagePath(alternative.image)} 
             alt="Alternative installation method"
             className={styles.installationImage}
           />

@@ -60,30 +60,20 @@ export default function DownloadChart(): React.JSX.Element {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log('DownloadChart: Starting data fetch...');
       setIsLoading(true);
       setError(null);
 
       try {
         const response = await fetch('data/download_data.json');
-        console.log('DownloadChart: Response status:', response.status);
-        console.log('DownloadChart: Response ok:', response.ok);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const data = await response.json();
-        console.log('DownloadChart: Fetched JSON data:', data);
-        console.log('DownloadChart: Data type:', typeof data);
-        console.log(
-          'DownloadChart: Data length:',
-          Array.isArray(data) ? data.length : 'not an array'
-        );
 
         if (Array.isArray(data) && data.length > 0) {
           setChartData(data);
-          console.log('DownloadChart: Data set successfully');
         } else {
           console.error('DownloadChart: Data is not a valid array or is empty');
           setError('Invalid data format');
@@ -105,10 +95,6 @@ export default function DownloadChart(): React.JSX.Element {
 
   useEffect(() => {
     const initializeChart = async () => {
-      console.log('DownloadChart: initializeChart called');
-      console.log('DownloadChart: chartData:', chartData);
-      console.log('DownloadChart: chartRef.current:', chartRef.current);
-
       try {
         if (!chartRef.current) {
           console.error('DownloadChart: Chart ref not available');
@@ -127,19 +113,11 @@ export default function DownloadChart(): React.JSX.Element {
           return;
         }
 
-        console.log('DownloadChart: Loading Google Charts API');
-
         // Load Google Charts API if not already loaded
         await loadGoogleCharts();
 
         // Wait for Google Charts to be fully available
         await waitForGoogleCharts();
-
-        console.log('DownloadChart: Google Charts API loaded', {
-          google: !!window.google,
-          visualization: !!window.google?.visualization,
-          AreaChart: !!window.google?.visualization?.AreaChart,
-        });
 
         if (
           !window.google ||
@@ -150,8 +128,6 @@ export default function DownloadChart(): React.JSX.Element {
           return;
         }
 
-        console.log('DownloadChart: Drawing chart with data:', chartData);
-
         // Use the 2D array directly
         const dataTable =
           window.google.visualization.arrayToDataTable(chartData);
@@ -160,9 +136,6 @@ export default function DownloadChart(): React.JSX.Element {
         const numRows = dataTable.getNumberOfRows();
         const latestDownloads = dataTable.getValue(numRows - 1, 1);
         const latestDate = dataTable.getValue(numRows - 1, 0);
-
-        // Debug log for last row
-        console.log('Last row:', numRows, latestDate, latestDownloads);
 
         const downloadsStr =
           latestDownloads != null && latestDownloads.toLocaleString
@@ -201,20 +174,16 @@ export default function DownloadChart(): React.JSX.Element {
           },
         };
 
-        console.log('DownloadChart: Chart options:', options);
-
         const chart = new window.google.visualization.AreaChart(
           chartRef.current
         );
         chart.draw(dataTable, options);
 
-        console.log('DownloadChart: Chart drawn successfully');
       } catch (error) {
         console.error('DownloadChart: Error initializing chart:', error);
       }
     };
 
-    console.log('DownloadChart: useEffect triggered', { chartData });
     initializeChart();
   }, [chartData]);
 

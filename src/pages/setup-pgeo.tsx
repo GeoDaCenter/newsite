@@ -3,11 +3,24 @@ import Layout from '@theme/Layout';
 import styles from './setup-instruction.module.css';
 import commonStyles from '../styles/common.module.css';
 import Hero from '../components/Hero';
+import Root from '../components/Root';
 import setupPgeoContent from '../data/setupPgeoContent.json';
 import siteCommon from '../data/siteCommon.json';
 import { getImagePath } from '../utils/imagePath';
+import { useLocalizedContent, useLocalizedContentFile } from '../utils/contentLoader';
 
 export default function SetupPgeo(): React.JSX.Element {
+  return (
+    <Root>
+      <SetupPgeoContent />
+    </Root>
+  );
+}
+
+function SetupPgeoContent(): React.JSX.Element {
+  const localizedSiteCommon = useLocalizedContent(siteCommon);
+  const localizedSetupPgeoContent = useLocalizedContentFile('setupPgeoContent.json', setupPgeoContent);
+
   return (
     <Layout
       title="Plugins | GeoDa on Github"
@@ -15,9 +28,9 @@ export default function SetupPgeo(): React.JSX.Element {
     >
       <main>
         <Hero
-          title={siteCommon.hero.title}
-          tagline={setupPgeoContent.tagline}
-          buttons={siteCommon.hero.buttons}
+          title={localizedSiteCommon.hero.title}
+          tagline={localizedSetupPgeoContent.tagline}
+          buttons={localizedSiteCommon.hero.buttons}
         />
 
         <div className={commonStyles.container}>
@@ -26,11 +39,11 @@ export default function SetupPgeo(): React.JSX.Element {
               <a id="welcome-to-github-pages" className="anchor" href="#welcome-to-github-pages" aria-hidden="true">
                 <span className="octicon octicon-link"></span>
               </a>
-              {setupPgeoContent.mainContent.title}
+              {localizedSetupPgeoContent.mainContent.title}
             </h3>
 
             <div className={styles.description}>
-              {setupPgeoContent.mainContent.description.map((paragraph, index) => (
+              {localizedSetupPgeoContent.mainContent.description.map((paragraph, index) => (
                 <p key={index} className={styles.descriptionText}>
                   {paragraph}
                 </p>
@@ -38,7 +51,7 @@ export default function SetupPgeo(): React.JSX.Element {
             </div>
 
             <div className={styles.imageGallery}>
-              {setupPgeoContent.mainContent.images.map((image, index) => (
+              {localizedSetupPgeoContent.mainContent.images.map((image, index) => (
                 <div key={index} className={styles.imageContainer}>
                   <img src={getImagePath(image.src)} alt={image.alt} className={styles.instructionImage} />
                 </div>

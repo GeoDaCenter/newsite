@@ -4,10 +4,23 @@ import styles from './download.module.css';
 import commonStyles from '../styles/common.module.css';
 import Hero from '../components/Hero';
 import DownloadLink from '../components/DownloadLink';
+import Root from '../components/Root';
 import downloadNightly from '../data/downloadNightly.json';
 import siteCommon from '../data/siteCommon.json';
+import { useLocalizedContent, useLocalizedContentFile } from '../utils/contentLoader';
 
 export default function DownloadNightly(): React.JSX.Element {
+  return (
+    <Root>
+      <DownloadNightlyContent />
+    </Root>
+  );
+}
+
+function DownloadNightlyContent(): React.JSX.Element {
+  const localizedSiteCommon = useLocalizedContent(siteCommon);
+  const localizedDownloadNightly = useLocalizedContentFile('downloadNightly.json', downloadNightly);
+
   return (
     <Layout
       title="Download GeoDa Nightly Build"
@@ -15,19 +28,19 @@ export default function DownloadNightly(): React.JSX.Element {
     >
       <main>
         <Hero
-          title={siteCommon.hero.title}
-          tagline={downloadNightly.title}
-          buttons={siteCommon.hero.buttons}
+          title={localizedSiteCommon.hero.title}
+          tagline={localizedDownloadNightly.title}
+          buttons={localizedSiteCommon.hero.buttons}
         />
 
         <div className={commonStyles.container}>
           <div className={commonStyles.content}>
             <section className={styles.mainContent}>
               <h3 className={commonStyles.heading}>
-                {downloadNightly.title}
+                {localizedDownloadNightly.title}
               </h3>
               
-              {downloadNightly.releases.map((release, index) => (
+              {localizedDownloadNightly.releases.map((release, index) => (
                 <div key={index} className={styles.releaseSection}>
                   <h4 className={commonStyles.heading}>
                     {release.date} {release.version}

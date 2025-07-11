@@ -13,9 +13,37 @@ interface LocaleProviderProps {
   children: ReactNode;
 }
 
+// Helper function to safely access localStorage
+const getLocalStorageItem = (key: string): string | null => {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    return localStorage.getItem(key);
+  }
+  return null;
+};
+
+// Helper function to safely set localStorage
+const setLocalStorageItem = (key: string, value: string): void => {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    localStorage.setItem(key, value);
+  }
+};
+
 export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children }) => {
   const location = useLocation();
-  const [currentLocale, setCurrentLocaleState] = useState('en');
+  
+  // Initialize from localStorage or default to 'en'
+  const getInitialLocale = () => {
+    const savedLocale = getLocalStorageItem('preferredLanguage');
+    console.log(`LocaleProvider - Initializing locale. Saved locale: ${savedLocale}`);
+    if (savedLocale && ['en', 'zh-Hans', 'es'].includes(savedLocale)) {
+      console.log(`LocaleProvider - Using saved locale: ${savedLocale}`);
+      return savedLocale;
+    }
+    console.log(`LocaleProvider - Using default locale: en`);
+    return 'en';
+  };
+  
+  const [currentLocale, setCurrentLocaleState] = useState(getInitialLocale);
 
   const locales = [
     { code: 'en', label: 'English' },
@@ -23,16 +51,22 @@ export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children }) => {
     { code: 'es', label: 'Español' }
   ];
 
-  // Update locale based on URL path
+  // Update locale based on URL path, but only if no saved locale exists
   useEffect(() => {
+    const savedLocale = getLocalStorageItem('preferredLanguage');
     const path = location.pathname;
-    if (path.includes('/zh-Hans/')) {
-      setCurrentLocaleState('zh-Hans');
-    } else if (path.includes('/es/')) {
-      setCurrentLocaleState('es');
-    } else {
-      setCurrentLocaleState('en');
+    
+    // Only override with URL-based detection if no saved locale exists
+    if (!savedLocale || !['en', 'zh-Hans', 'es'].includes(savedLocale)) {
+      if (path.includes('/zh-Hans/')) {
+        setCurrentLocaleState('zh-Hans');
+      } else if (path.includes('/es/')) {
+        setCurrentLocaleState('es');
+      } else {
+        setCurrentLocaleState('en');
+      }
     }
+    // If saved locale exists, keep it regardless of URL
   }, [location.pathname]);
 
   // Listen for language change events from the standalone switcher
@@ -49,7 +83,16 @@ export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children }) => {
   }, []);
 
   const setCurrentLocale = (locale: string) => {
+    console.log(`LocaleProvider - Setting locale to: ${locale}`);
     setCurrentLocaleState(locale);
+    // Save to localStorage for persistence
+    setLocalStorageItem('preferredLanguage', locale);
+    
+    // Dispatch event to notify standalone components
+    const event = new CustomEvent('localeProviderChanged', { 
+      detail: { locale } 
+    });
+    window.dispatchEvent(event);
   };
 
   return (
@@ -64,5 +107,6 @@ export const useLocale = (): LocaleContextType => {
   if (context === undefined) {
     throw new Error('useLocale must be used within a LocaleProvider');
   }
+  console.log(`useLocale - Current locale: ${context.currentLocale}`);
   return context;
 }; 

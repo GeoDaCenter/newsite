@@ -5,10 +5,23 @@ import commonStyles from '../styles/common.module.css';
 import Hero from '../components/Hero';
 import DownloadLink from '../components/DownloadLink';
 import VersionSection from '../components/VersionSection';
+import Root from '../components/Root';
 import downloadMac from '../data/downloadMac.json';
 import siteCommon from '../data/siteCommon.json';
+import { useLocalizedContent, useLocalizedContentFile } from '../utils/contentLoader';
 
 export default function DownloadMac(): React.JSX.Element {
+  return (
+    <Root>
+      <DownloadMacContent />
+    </Root>
+  );
+}
+
+function DownloadMacContent(): React.JSX.Element {
+  const localizedSiteCommon = useLocalizedContent(siteCommon);
+  const localizedDownloadMac = useLocalizedContentFile('downloadMac.json', downloadMac);
+
   return (
     <Layout
       title="Download GeoDa for Mac"
@@ -16,33 +29,33 @@ export default function DownloadMac(): React.JSX.Element {
     >
       <main>
         <Hero
-          title={siteCommon.hero.title}
-          tagline={downloadMac.title}
-          buttons={siteCommon.hero.buttons}
+          title={localizedSiteCommon.hero.title}
+          tagline={localizedDownloadMac.title}
+          buttons={localizedSiteCommon.hero.buttons}
         />
 
         <div className={commonStyles.container}>
           <div className={commonStyles.content}>
             <section className={styles.mainContent}>
               <h3 className={commonStyles.heading}>
-                {downloadMac.title}
+                {localizedDownloadMac.title}
               </h3>
               
               <p>
-                {downloadMac.description}
+                {localizedDownloadMac.description}
               </p>
 
               <VersionSection
-                version={downloadMac.currentVersion.version}
-                downloads={downloadMac.currentVersion.downloads}
+                version={localizedDownloadMac.currentVersion.version}
+                downloads={localizedDownloadMac.currentVersion.downloads}
               />
 
               <div className={styles.alternativeDownloads}>
                 <p>
-                  {downloadMac.alternativeDownloads.title}
+                  {localizedDownloadMac.alternativeDownloads.title}
                 </p>
                 <ul className={styles.downloadList}>
-                  {downloadMac.alternativeDownloads.downloads.map((download, index) => (
+                  {localizedDownloadMac.alternativeDownloads.downloads.map((download, index) => (
                     <DownloadLink
                       key={index}
                       text={download.text}
@@ -53,7 +66,7 @@ export default function DownloadMac(): React.JSX.Element {
                 </ul>
               </div>
 
-              {downloadMac.notes.map((note, index) => (
+              {localizedDownloadMac.notes.map((note, index) => (
                 <div key={index} className={styles.noteSection}>
                   <h4 className={commonStyles.heading}>{note.title}</h4>
                   <p>{note.content}</p>
@@ -64,7 +77,7 @@ export default function DownloadMac(): React.JSX.Element {
               ))}
 
               <h3 className={commonStyles.heading}>Previous versions</h3>
-              {downloadMac.previousVersions.map((version, index) => (
+              {localizedDownloadMac.previousVersions.map((version, index) => (
                 <VersionSection
                   key={index}
                   version={version.version}

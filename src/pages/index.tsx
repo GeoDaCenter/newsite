@@ -9,7 +9,6 @@ import AcknowledgmentsSection from '../components/AcknowledgmentsSection';
 import SupportSection from '../components/SupportSection';
 import LicenseSection from '../components/LicenseSection';
 import DonateSection from '../components/DonateSection';
-import GlobalLanguageSwitcher from '../components/GlobalLanguageSwitcher';
 
 import indexContent from '../data/indexContent.json';
 import siteCommon from '../data/siteCommon.json';
@@ -32,7 +31,6 @@ function HomeContent(): React.JSX.Element {
       title="GeoDa - An Introduction to Spatial Data Science"
       description="GeoDa is a free and open source software tool that serves as an introduction to spatial data science."
     >
-      <GlobalLanguageSwitcher />
       <main>
         <Hero
           title={localizedSiteCommon.hero.title}

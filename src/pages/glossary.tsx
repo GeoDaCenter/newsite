@@ -1,7 +1,9 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Hero from '../components/Hero';
+import Root from '../components/Root';
 import siteCommon from '../data/siteCommon.json';
+import { useLocalizedContent } from '../utils/contentLoader';
 
 // Helper to replace all /glossary.html#... links with ./glossary#...
 const fixGlossaryLinks = (html: string) =>
@@ -9,15 +11,25 @@ const fixGlossaryLinks = (html: string) =>
 
 export default function Glossary(): React.JSX.Element {
   return (
+    <Root>
+      <GlossaryContent />
+    </Root>
+  );
+}
+
+function GlossaryContent(): React.JSX.Element {
+  const localizedSiteCommon = useLocalizedContent(siteCommon);
+
+  return (
     <Layout
       title="Glossary - GeoDa"
       description="Glossary of Terms Used in GeoDa - An Introduction to Spatial Data Science"
     >
       <main>
         <Hero
-          title={siteCommon.hero.title}
+          title={localizedSiteCommon.hero.title}
           tagline="Terms Used in GeoDa"
-          buttons={siteCommon.hero.buttons}
+          buttons={localizedSiteCommon.hero.buttons}
         />
         <section className="main-content">
           <div

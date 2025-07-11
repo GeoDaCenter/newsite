@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '@theme/Layout';
+import Root from '../components/Root';
 import commonStyles from '../styles/common.module.css';
 import Hero from '../components/Hero';
 import DonationSection from '../components/DonationSection';
@@ -10,6 +11,7 @@ import MapSection from '../components/MapSection';
 import DownloadChart from '../components/DownloadChart';
 import downloadContent from '../data/downloadContent.json';
 import siteCommon from '../data/siteCommon.json';
+import { useLocalizedContent, useLocalizedContentFile } from '../utils/contentLoader';
 
 interface CountryDownload {
   id: string;
@@ -17,9 +19,25 @@ interface CountryDownload {
 }
 
 export default function Download(): React.JSX.Element {
+  return (
+    <Root>
+      <DownloadContent />
+    </Root>
+  );
+}
+
+function DownloadContent(): React.JSX.Element {
   const [countryDownloads, setCountryDownloads] = useState<CountryDownload[]>(
     []
   );
+
+  const localizedSiteCommon = useLocalizedContent(siteCommon);
+  const localizedDownloadContent = useLocalizedContentFile('downloadContent.json', downloadContent);
+  
+  // Debug logging
+  console.log('Download page - Current locale from context:', localizedSiteCommon);
+  console.log('Download page - Localized download content:', localizedDownloadContent);
+  console.log('Download page - Original download content:', downloadContent);
 
   useEffect(() => {
     // Load country download data
@@ -56,42 +74,42 @@ export default function Download(): React.JSX.Element {
     >
       <main>
         <Hero
-          title={siteCommon.hero.title}
-          tagline={downloadContent.title}
-          buttons={siteCommon.hero.buttons}
+          title={localizedSiteCommon.hero.title}
+          tagline={localizedDownloadContent.title}
+          buttons={localizedSiteCommon.hero.buttons}
         />
 
         <div className={commonStyles.container}>
           <div className={commonStyles.content}>
             <DonationSection
-              title={downloadContent.donation.title}
-              content={downloadContent.donation.content}
-              links={downloadContent.donation.links}
-              image={downloadContent.donation.image}
-              imageAlt={downloadContent.donation.imageAlt}
-              description={downloadContent.donation.description}
-              descriptionLinks={downloadContent.donation.descriptionLinks}
+              title={localizedDownloadContent.donation.title}
+              content={localizedDownloadContent.donation.content}
+              links={localizedDownloadContent.donation.links}
+              image={localizedDownloadContent.donation.image}
+              imageAlt={localizedDownloadContent.donation.imageAlt}
+              description={localizedDownloadContent.donation.description}
+              descriptionLinks={localizedDownloadContent.donation.descriptionLinks}
             />
 
             <DownloadButtons
-              buttons={downloadContent.downloadButtons.buttons}
+              buttons={localizedDownloadContent.downloadButtons.buttons}
             />
 
             <LabInstallation
-              title={downloadContent.labInstallation.title}
-              description={downloadContent.labInstallation.description}
-              text={downloadContent.labInstallation.text}
-              href={downloadContent.labInstallation.href}
+              title={localizedDownloadContent.labInstallation.title}
+              description={localizedDownloadContent.labInstallation.description}
+              text={localizedDownloadContent.labInstallation.text}
+              href={localizedDownloadContent.labInstallation.href}
             />
 
             <ReleaseList
-              title={downloadContent.releaseList.title}
-              releaseNotesLink={downloadContent.releaseList.releaseNotesLink}
-              releases={downloadContent.releaseList.releases}
+              title={localizedDownloadContent.releaseList.title}
+              releaseNotesLink={localizedDownloadContent.releaseList.releaseNotesLink}
+              releases={localizedDownloadContent.releaseList.releases}
             />
 
             <MapSection
-              title={downloadContent.map.title}
+              title={localizedDownloadContent.map.title}
               countryDownloads={countryDownloads}
             />
 

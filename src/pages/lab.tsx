@@ -2,7 +2,9 @@ import React, { useEffect, useState, useRef } from 'react';
 import Layout from '@theme/Layout';
 import styles from './lab.module.css';
 import Hero from '../components/Hero';
+import Root from '../components/Root';
 import siteCommon from '../data/siteCommon.json';
+import { useLocalizedContent } from '../utils/contentLoader';
 
 interface LabContentProps {
   workbookUrl: string;
@@ -78,6 +80,14 @@ function LabContent({ workbookUrl, title }: LabContentProps): React.JSX.Element 
 }
 
 export default function Lab(): React.JSX.Element {
+  return (
+    <Root>
+      <LabPageContent />
+    </Root>
+  );
+}
+
+function LabPageContent(): React.JSX.Element {
   const [labInfo, setLabInfo] = useState<{
     title: string;
     url: string;
@@ -85,6 +95,8 @@ export default function Lab(): React.JSX.Element {
     title: 'GeoDa Workbook',
     url: ''
   });
+
+  const localizedSiteCommon = useLocalizedContent(siteCommon);
 
   useEffect(() => {
     // Get lab info from URL parameters
@@ -114,9 +126,9 @@ export default function Lab(): React.JSX.Element {
     >
       <main>
         <Hero
-          title={siteCommon.hero.title}
+          title={localizedSiteCommon.hero.title}
           tagline={labInfo.title}
-          buttons={siteCommon.hero.buttons}
+          buttons={localizedSiteCommon.hero.buttons}
         />
 
         <LabContent 

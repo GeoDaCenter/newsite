@@ -83,8 +83,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
 
   useEffect(() => {
     const initializeMap = async () => {
-      console.log('GeoDaMap: initializeMap called');
-      
       try {
         // Check if scripts are already loaded, if not load them
         if (!window.d3 || !window.topojson || !window.queue || !window.ss) {
@@ -95,13 +93,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
         // Wait for global objects to be available
         await waitForGlobals();
         
-        console.log('GeoDaMap: Global objects loaded', {
-          d3: !!window.d3,
-          topojson: !!window.topojson,
-          queue: !!window.queue,
-          ss: !!window.ss
-        });
-
         if (!mapRef.current || !map2dRef.current) {
           console.error('Map refs not available');
           return;
@@ -110,7 +101,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
         // Check if required libraries are available
         if (!window.d3 || !window.d3.geo || !window.d3.geo.equirectangular) {
           console.error('D3 v3 geo API not available');
-          console.log('Available d3 properties:', window.d3 ? Object.keys(window.d3) : 'd3 not loaded');
           return;
         }
 
@@ -129,16 +119,12 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
           return;
         }
 
-        console.log('GeoDaMap: Map refs available, clearing content');
-
         // Clear existing content
         mapRef.current.innerHTML = '';
         map2dRef.current.innerHTML = '';
 
         // Create tooltip exactly like original
         const countryTooltip = window.d3.select("body").append("div").attr("class", "countryTooltip");
-
-        console.log('GeoDaMap: Setting up 2D map');
 
         // 2D map setup - exactly like original
         const projection2d = window.d3.geo.equirectangular().scale(150);
@@ -154,8 +140,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
           .datum({ type: 'Sphere' })
           .attr('class', styles.water)
           .attr('d', path2d);
-
-        console.log('GeoDaMap: Setting up 3D map');
 
         // 3D map setup - exactly like original
         const width = 600;
@@ -180,8 +164,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
           .attr('viewBox', `-100 0 ${width + 100} ${height}`)
           .attr('preserveAspectRatio', 'xMidYMid meet');
 
-        console.log('GeoDaMap: SVG created, adding water');
-
         // Add water for 3D map - exactly like original
         svg.append('path')
           .datum({ type: 'Sphere' })
@@ -201,8 +183,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
             })
           );
 
-        console.log('GeoDaMap: Loading data files');
-
         // Load data exactly like original
         window.queue()
           .defer(window.d3.json, './data/world-110m.json')
@@ -217,12 +197,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
             return;
           }
 
-          console.log('GeoDaMap: Data loaded', { 
-            world: !!world, 
-            countryData: !!countryData,
-            countryDownloads: !!countryDownloads
-          });
-
           if (!world || !world.objects) {
             console.error('GeoDaMap: World data is missing or invalid');
             return;
@@ -235,8 +209,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
           const countryById: { [key: string]: string } = {};
           const downloadById: { [key: string]: number } = {};
           const countries = window.topojson.feature(world, world.objects.countries).features;
-
-          console.log('GeoDaMap: Countries extracted', countries.length);
 
           countryData.forEach((d: any) => {
             countryById[d.id] = d.name;
@@ -266,8 +238,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
             downCat = [];
           }
 
-          console.log('GeoDaMap: Processing download data', { sumDown, downDataLength: downData.length, downCat });
-
           scales.jenks9 = window.d3.scale.threshold()
             .domain(downCat)
             .range(window.d3.range(11).map((i: number) => `q${i}-11`));
@@ -275,8 +245,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
           scales.quantize = window.d3.scale.quantize()
             .domain([0, sumDown])
             .range(window.d3.range(11).map((i: number) => `q${i}-11`));
-
-          console.log('GeoDaMap: Drawing 2D countries');
 
           // Drawing 2D globe - exactly like original
           const world2d = svg2d.selectAll(`path.${styles.land}`)
@@ -289,9 +257,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
                 down = downloadById[d.id];
               }
               const clr = scales.jenks9(down);
-              if (clr === undefined) {
-                console.log(d.id);
-              }
               return `${styles.land} ${styles[clr]}`;
             })
             .attr('d', path2d)
@@ -309,8 +274,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
                 .style('opacity', 1);
             });
 
-          console.log('GeoDaMap: Setting up auto-rotation');
-
           // Auto-rotation - exactly like original
           window.d3.timer(() => {
             if (interrupt === false) {
@@ -320,8 +283,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
               svg.selectAll('.focused').classed('focused', focused = false);
             }
           });
-
-          console.log('GeoDaMap: Adding legends');
 
           // Adding legend - exactly like original
           let legendCat: number[];
@@ -377,8 +338,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
               .text((d: number, i: number) => downCat[i]);
           }
 
-          console.log('GeoDaMap: Drawing 3D countries');
-
           // Drawing countries on the globe - exactly like original
           const world3d = svg.selectAll(`path.${styles.land}`)
             .data(countries)
@@ -390,9 +349,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
                 down = downloadById[d.id];
               }
               const clr = scales.jenks9(down);
-              if (clr === undefined) {
-                console.log(d.id);
-              }
               return `${styles.land} ${styles[clr]}`;
             })
             .attr('d', path)
@@ -433,8 +389,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
               countryTooltip.style('left', (window.d3.event.pageX + 7) + 'px')
                 .style('top', (window.d3.event.pageY - 15) + 'px');
             });
-
-          console.log('GeoDaMap: Map initialization complete');
         }
 
       } catch (error) {
@@ -442,7 +396,6 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
       }
     };
 
-    console.log('GeoDaMap: useEffect triggered', { mapView, countryDownloads });
     initializeMap();
   }, [mapView, countryDownloads]);
 

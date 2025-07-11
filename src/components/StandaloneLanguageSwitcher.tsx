@@ -4,6 +4,21 @@ interface StandaloneLanguageSwitcherProps {
   className?: string;
 }
 
+// Helper function to safely access localStorage
+const getLocalStorageItem = (key: string): string | null => {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    return localStorage.getItem(key);
+  }
+  return null;
+};
+
+// Helper function to safely set localStorage
+const setLocalStorageItem = (key: string, value: string): void => {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    localStorage.setItem(key, value);
+  }
+};
+
 const StandaloneLanguageSwitcher: React.FC<StandaloneLanguageSwitcherProps> = ({ className }) => {
   const [currentLocale, setCurrentLocale] = useState('en');
   const [isOpen, setIsOpen] = useState(false);
@@ -29,12 +44,12 @@ const StandaloneLanguageSwitcher: React.FC<StandaloneLanguageSwitcherProps> = ({
     window.dispatchEvent(event);
     
     // Update localStorage for persistence
-    localStorage.setItem('preferredLanguage', newLocale);
+    setLocalStorageItem('preferredLanguage', newLocale);
   };
 
   // Initialize locale from localStorage or URL
   useEffect(() => {
-    const savedLocale = localStorage.getItem('preferredLanguage');
+    const savedLocale = getLocalStorageItem('preferredLanguage');
     const path = window.location.pathname;
     
     if (path.includes('/zh-Hans/')) {
@@ -44,6 +59,17 @@ const StandaloneLanguageSwitcher: React.FC<StandaloneLanguageSwitcherProps> = ({
     } else if (savedLocale && locales.some(l => l.code === savedLocale)) {
       setCurrentLocale(savedLocale);
     }
+    
+    // Listen for language changes from LocaleProvider
+    const handleLanguageChange = (event: CustomEvent) => {
+      setCurrentLocale(event.detail.locale);
+    };
+
+    window.addEventListener('localeProviderChanged', handleLanguageChange as EventListener);
+    
+    return () => {
+      window.removeEventListener('localeProviderChanged', handleLanguageChange as EventListener);
+    };
   }, []);
 
   // Close dropdown when clicking outside

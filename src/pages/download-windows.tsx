@@ -5,11 +5,24 @@ import commonStyles from '../styles/common.module.css';
 import Hero from '../components/Hero';
 import VersionSection from '../components/VersionSection';
 import InstallationSection from '../components/InstallationSection';
+import Root from '../components/Root';
 import downloadWindows from '../data/downloadWindows.json';
 import siteCommon from '../data/siteCommon.json';
 import { getImagePath } from '../utils/imagePath';
+import { useLocalizedContent, useLocalizedContentFile } from '../utils/contentLoader';
 
 export default function DownloadWindows(): React.JSX.Element {
+  return (
+    <Root>
+      <DownloadWindowsContent />
+    </Root>
+  );
+}
+
+function DownloadWindowsContent(): React.JSX.Element {
+  const localizedSiteCommon = useLocalizedContent(siteCommon);
+  const localizedDownloadWindows = useLocalizedContentFile('downloadWindows.json', downloadWindows);
+
   return (
     <Layout
       title="Download GeoDa for Windows"
@@ -17,28 +30,28 @@ export default function DownloadWindows(): React.JSX.Element {
     >
       <main>
         <Hero
-          title={siteCommon.hero.title}
-          tagline={downloadWindows.title}
-          buttons={siteCommon.hero.buttons}
+          title={localizedSiteCommon.hero.title}
+          tagline={localizedDownloadWindows.title}
+          buttons={localizedSiteCommon.hero.buttons}
         />
 
         <div className={commonStyles.container}>
           <div className={commonStyles.content}>
             <section className={styles.mainContent}>
               <h3 className={commonStyles.heading}>
-                {downloadWindows.title}
+                {localizedDownloadWindows.title}
               </h3>
               
               <p>
-                {downloadWindows.description}
+                {localizedDownloadWindows.description}
               </p>
 
               <VersionSection
-                version={downloadWindows.currentVersion.version}
-                downloads={downloadWindows.currentVersion.downloads}
+                version={localizedDownloadWindows.currentVersion.version}
+                downloads={localizedDownloadWindows.currentVersion.downloads}
               />
 
-              {downloadWindows.notes.map((note, index) => (
+              {localizedDownloadWindows.notes.map((note, index) => (
                 <div key={index} className={styles.noteSection}>
                   <p>{note.content}</p>
                   {note.steps && (
@@ -52,7 +65,7 @@ export default function DownloadWindows(): React.JSX.Element {
               ))}
 
               <h3 className={commonStyles.heading}>Previous versions</h3>
-              {downloadWindows.previousVersions.map((version, index) => (
+              {localizedDownloadWindows.previousVersions.map((version, index) => (
                 <VersionSection
                   key={index}
                   version={version.version}
@@ -62,26 +75,26 @@ export default function DownloadWindows(): React.JSX.Element {
                 />
               ))}
 
-              {downloadWindows.systemInfo && (
+              {localizedDownloadWindows.systemInfo && (
                 <div className={styles.systemInfo}>
                   <h4 className={commonStyles.heading}>
-                    {downloadWindows.systemInfo.title}
+                    {localizedDownloadWindows.systemInfo.title}
                   </h4>
                   <p>
-                    {downloadWindows.systemInfo.content}
+                    {localizedDownloadWindows.systemInfo.content}
                   </p>
                   <img 
-                    src={getImagePath(downloadWindows.systemInfo.image)} 
+                    src={getImagePath(localizedDownloadWindows.systemInfo.image)} 
                     alt="Windows system information"
                     className={styles.systemInfoImage}
                   />
                 </div>
               )}
 
-              {downloadWindows.installation && (
+              {localizedDownloadWindows.installation && (
                 <div className={styles.installationContainer}>
                   <h3 className={commonStyles.heading}>
-                    {downloadWindows.installation.title}
+                    {localizedDownloadWindows.installation.title}
                   </h3>
                   <ul className={styles.installationMenu}>
                     <li><a href="#install_geoda">Installation</a></li>
@@ -90,7 +103,7 @@ export default function DownloadWindows(): React.JSX.Element {
                     <li><a href="#create_a_usb_running_geoda">Create a USB running GeoDa</a></li>
                   </ul>
 
-                  {downloadWindows.installation.sections.map((section, index) => {
+                  {localizedDownloadWindows.installation.sections.map((section, index) => {
                     // Create anchor ID based on section title
                     const anchorId = section.title.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
                     return (
@@ -108,9 +121,9 @@ export default function DownloadWindows(): React.JSX.Element {
                 </div>
               )}
 
-              {downloadWindows.footerNote && (
+              {localizedDownloadWindows.footerNote && (
                 <p>
-                  {downloadWindows.footerNote}
+                  {localizedDownloadWindows.footerNote}
                 </p>
               )}
             </section>

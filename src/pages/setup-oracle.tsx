@@ -4,10 +4,23 @@ import styles from './setup-instruction.module.css';
 import commonStyles from '../styles/common.module.css';
 import Hero from '../components/Hero';
 import SetupInstructionSection from '../components/SetupInstructionSection';
+import Root from '../components/Root';
 import setupOracleContent from '../data/setupOracleContent.json';
 import siteCommon from '../data/siteCommon.json';
+import { useLocalizedContent, useLocalizedContentFile } from '../utils/contentLoader';
 
 export default function SetupOracle(): React.JSX.Element {
+  return (
+    <Root>
+      <SetupOracleContent />
+    </Root>
+  );
+}
+
+function SetupOracleContent(): React.JSX.Element {
+  const localizedSiteCommon = useLocalizedContent(siteCommon);
+  const localizedSetupOracleContent = useLocalizedContentFile('setupOracleContent.json', setupOracleContent);
+
   return (
     <Layout
       title="Plugins: Setup Oracle | GeoDa on Github"
@@ -15,9 +28,9 @@ export default function SetupOracle(): React.JSX.Element {
     >
       <main>
         <Hero
-          title={siteCommon.hero.title}
-          tagline={setupOracleContent.tagline}
-          buttons={siteCommon.hero.buttons}
+          title={localizedSiteCommon.hero.title}
+          tagline={localizedSetupOracleContent.tagline}
+          buttons={localizedSiteCommon.hero.buttons}
         />
 
         <div className={commonStyles.container}>
@@ -31,11 +44,11 @@ export default function SetupOracle(): React.JSX.Element {
               >
                 <span className="octicon octicon-link"></span>
               </a>
-              {setupOracleContent.mainContent.title}
+              {localizedSetupOracleContent.mainContent.title}
             </h3>
 
             <div className={styles.navigation}>
-              {setupOracleContent.mainContent.navigation.map((nav, index) => (
+              {localizedSetupOracleContent.mainContent.navigation.map((nav, index) => (
                 <a key={index} href={nav.href} className={styles.navLink}>
                   {nav.text}
                 </a>
@@ -44,7 +57,7 @@ export default function SetupOracle(): React.JSX.Element {
 
             <hr className={styles.divider} />
 
-            {setupOracleContent.mainContent.sections.map((section, index) => (
+            {localizedSetupOracleContent.mainContent.sections.map((section, index) => (
               <SetupInstructionSection
                 key={index}
                 id={section.id}

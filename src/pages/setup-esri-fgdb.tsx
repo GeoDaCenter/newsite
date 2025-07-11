@@ -4,10 +4,23 @@ import styles from './setup-instruction.module.css';
 import commonStyles from '../styles/common.module.css';
 import Hero from '../components/Hero';
 import SetupInstructionSection from '../components/SetupInstructionSection';
+import Root from '../components/Root';
 import setupEsriFgdbContent from '../data/setupEsriFgdbContent.json';
 import siteCommon from '../data/siteCommon.json';
+import { useLocalizedContent, useLocalizedContentFile } from '../utils/contentLoader';
 
 export default function SetupEsriFgdb(): React.JSX.Element {
+  return (
+    <Root>
+      <SetupEsriFgdbContent />
+    </Root>
+  );
+}
+
+function SetupEsriFgdbContent(): React.JSX.Element {
+  const localizedSiteCommon = useLocalizedContent(siteCommon);
+  const localizedSetupEsriFgdbContent = useLocalizedContentFile('setupEsriFgdbContent.json', setupEsriFgdbContent);
+
   return (
     <Layout
       title="Plugins | GeoDa on Github"
@@ -15,9 +28,9 @@ export default function SetupEsriFgdb(): React.JSX.Element {
     >
       <main>
         <Hero
-          title={siteCommon.hero.title}
-          tagline={setupEsriFgdbContent.tagline}
-          buttons={siteCommon.hero.buttons}
+          title={localizedSiteCommon.hero.title}
+          tagline={localizedSetupEsriFgdbContent.tagline}
+          buttons={localizedSiteCommon.hero.buttons}
         />
 
         <div className={commonStyles.container}>
@@ -26,11 +39,11 @@ export default function SetupEsriFgdb(): React.JSX.Element {
               <a id="welcome-to-github-pages" className="anchor" href="#welcome-to-github-pages" aria-hidden="true">
                 <span className="octicon octicon-link"></span>
               </a>
-              {setupEsriFgdbContent.mainContent.title}
+              {localizedSetupEsriFgdbContent.mainContent.title}
             </h3>
 
             <div className={styles.navigation}>
-              {setupEsriFgdbContent.mainContent.navigation.map((nav, index) => (
+              {localizedSetupEsriFgdbContent.mainContent.navigation.map((nav, index) => (
                 <a key={index} href={nav.href} className={styles.navLink}>
                   {nav.text}
                 </a>
@@ -39,7 +52,7 @@ export default function SetupEsriFgdb(): React.JSX.Element {
 
             <hr className={styles.divider} />
 
-            {setupEsriFgdbContent.mainContent.sections.map((section, index) => (
+            {localizedSetupEsriFgdbContent.mainContent.sections.map((section, index) => (
               <SetupInstructionSection
                 key={index}
                 id={section.id}

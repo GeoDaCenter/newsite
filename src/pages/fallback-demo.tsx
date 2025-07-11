@@ -1,10 +1,19 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import FallbackExample from '../components/FallbackExample';
+import Root from '../components/Root';
 import siteCommon from '../data/siteCommon.json';
 import { useLocalizedContent } from '../utils/contentLoader';
 
 export default function FallbackDemo(): React.JSX.Element {
+  return (
+    <Root>
+      <FallbackDemoContent />
+    </Root>
+  );
+}
+
+function FallbackDemoContent(): React.JSX.Element {
   const localizedSiteCommon = useLocalizedContent(siteCommon);
   
   return (

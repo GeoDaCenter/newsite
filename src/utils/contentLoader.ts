@@ -57,19 +57,25 @@ export function useLocalizedContent<T>(defaultContent: T): T {
 export function useLocalizedContentFile<T>(fileName: string, defaultContent: T): T {
   const { currentLocale } = useLocale();
   
+  console.log(`useLocalizedContentFile - Current locale: ${currentLocale}, File: ${fileName}`);
+  
   if (currentLocale === 'en') {
+    console.log(`useLocalizedContentFile - Using English content for ${fileName}`);
     return defaultContent;
   }
   
   try {
     // Dynamic import for localized content
     const localizedModule = require(`../data/${currentLocale}/${fileName}`);
+    console.log(`useLocalizedContentFile - Successfully loaded ${currentLocale}/${fileName}:`, localizedModule);
+    
     // Merge with fallback to ensure all properties exist
     const mergedContent = deepMergeWithFallback(localizedModule, defaultContent);
+    console.log(`useLocalizedContentFile - Merged content for ${fileName}:`, mergedContent);
     return mergedContent as T;
   } catch (error) {
     // Fallback to default content if localized version doesn't exist
-    console.warn(`Localized content not found for locale: ${currentLocale}, file: ${fileName}, falling back to English`);
+    console.warn(`Localized content not found for locale: ${currentLocale}, file: ${fileName}, falling back to English. Error:`, error);
     return defaultContent;
   }
 }

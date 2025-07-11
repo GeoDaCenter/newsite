@@ -1,0 +1,293 @@
+{
+  "mainContent": {
+    "intro": {
+      "title": "介绍 GeoDa 1.22",
+      "content": [
+        "GeoDa 是一个免费开源的软件工具，作为空间数据科学的入门工具。它旨在通过探索和建模空间模式，从数据分析中获得新的见解。",
+        "GeoDa 由 Dr. Luc Anselin 博士及其团队开发。该程序为探索性空间数据分析（ESDA）方法提供了用户友好的图形界面，如聚合数据的空间自相关统计（数千条记录），以及点数据和多边形数据的基本空间回归分析（数万条记录）。要在 GeoDa 中处理大数据，应首先将其聚合到区域单元。",
+        "自 2003 年 2 月首次发布以来，GeoDa 的用户数量呈指数级增长，超过 520,000 人（2022 年 6 月）。这包括哈佛大学、麻省理工学院和康奈尔大学等大学的实验室用户。用户社区和媒体热情地接受了该程序，称其为\"极其重要的分析工具\"、\"非常优秀的软件\"和\"令人兴奋的发展\"。",
+        "最新版本 1.22 包含多层支持、几个新的局部聚类功能，包括单变量和多变量局部 Geary 聚类图、redcap、skater、谱聚类和 max-p，以及分类数据的局部连接计数图。它还实现了 Hoon 等人（2013）C 聚类库中的几种经典非空间聚类技术（主成分分析、k-means 和层次聚类），以及 HDBScan。",
+        "新的工作手册正在开发中。在此期间，这里有一些临时资源，包括 1.22 版本功能的概述。"
+      ],
+      "links": [
+        {
+          "text": "Dr. Luc Anselin",
+          "href": "https://en.wikipedia.org/wiki/Luc_Anselin"
+        },
+        {
+          "text": "团队",
+          "href": "https://spatial.uchicago.edu/directories/full/team"
+        },
+        {
+          "text": "单变量和多变量局部 Geary 聚类图",
+          "href": "/docs/LA_multivariateGeary1.pdf",
+          "external": true
+        },
+        {
+          "text": "Hoon 等人（2013）的 C 聚类库",
+          "href": "https://bonsai.hgc.jp/~mdehoon/software/cluster/cluster.pdf",
+          "external": true
+        },
+        {
+          "text": "这里有临时资源",
+          "href": "./documentation"
+        }
+      ],
+      "youtubeVideo": {
+        "src": "https://www.youtube.com/embed/--8vhhmpgdM",
+        "width": "360",
+        "height": "215"
+      }
+    },
+    "slideshow": {
+      "title": "GeoDa 1.22",
+      "description": "GeoDa 运行在 Windows、MacOSX 和 Linux（Ubuntu）上",
+      "slides": [
+        {
+          "image": "img/intro1.png",
+          "alt": "Mac OSX El Capitan",
+          "caption": "Mac OSX El Capitan"
+        },
+        {
+          "image": "img/intro2.png",
+          "alt": "Windows 7/8/10",
+          "caption": "Windows 7/8/10"
+        },
+        {
+          "image": "img/intro3.png",
+          "alt": "Ubuntu 14.04",
+          "caption": "Ubuntu 14.04"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "id": "intro-data-formats",
+        "title": "GeoDa 现在支持更多空间数据格式",
+        "content": "GeoDa 现在支持更多种类的不同格式的矢量数据（点击此处查看详情）：您可以处理 shapefile、地理数据库、GeoJSON、MapInfo、GML、KML 以及 GDAL 库支持的其他矢量数据格式。该程序还将表格格式的坐标（.csv、.dbf、.xls、.ods）转换为这些空间数据格式之一，并在不同文件格式之间转换数据（如 .csv 到 .dbf 或 shapefile 到 GeoJSON）。现在还可以选择子集并将其导出为新文件。",
+        "image": "img/dataformats.png",
+        "imageAlt": "数据格式",
+        "links": [
+          {
+            "text": "此处",
+            "href": "./formats"
+          }
+        ]
+      },
+      {
+        "id": "intro-multi-layer",
+        "title": "现在支持多层！",
+        "content": "首次，您现在可以为可视化目的在 Geoda 中加载额外的图层。分析仍将在您首先加载的图层上进行。在此示例中，地图显示了从住宅街区到交通站点的可达性，交通站点位置作为附加图层。",
+        "image": "img/multi-layer.png",
+        "imageAlt": "多层支持"
+      },
+      {
+        "id": "intro-esda",
+        "title": "通过链接地图和图表探索统计结果",
+        "content": "与在地图中可视化原始数据的程序不同，GeoDa 专注于通过链接地图和图表探索统计测试和模型的结果。",
+        "image": "img/esda.png",
+        "imageAlt": "ESDA"
+      },
+      {
+        "id": "intro-time",
+        "title": "在链接视图中分析空间和时间模式",
+        "content": "您现在可以在新的时间编辑器中按时间段对同一变量进行分组，以探索跨空间和时间的统计模式。然后使用时间播放器探索随时间变化的视图结果。",
+        "image": "img/time.png",
+        "imageAlt": "时间分析"
+      },
+      {
+        "id": "intro-ui",
+        "title": "使用底图验证地图结果",
+        "content": "如果您的空间数据已投影（.prj 文件），您现在可以为任何地图视图（包括聚类图）添加底图，以便更好地定位和验证结果。",
+        "image": "img/intro4.png",
+        "imageAlt": "底图",
+        "imageWidth": "832"
+      },
+      {
+        "id": "intro-avg",
+        "title": "比较跨时间和空间的平均值",
+        "content": "新的平均值图表比较在时间和/或空间上平均的值，并测试这些均值差异是否显著。例如，首先选择您是要比较同一时间段内选定与未选定观测值的均值，还是比较不同时间段的所有观测值。然后基本的前后/影响-控制测试表明您的结果是否随时间和空间发生变化（使用 F 检验和双重差分检验）。",
+        "image": "img/avgchart.png",
+        "imageAlt": "平均值图表"
+      },
+      {
+        "id": "intro-sp-matrix",
+        "title": "检测多变量空间中的关系",
+        "content": "散点图矩阵允许您同时探索多个双变量相关性。在此示例中，显示了旧金山选定、未选定和所有警察分局的回归斜率，以探索四种犯罪类型之间的关系。",
+        "image": "img/scatter_matrix.png",
+        "imageAlt": "散点矩阵"
+      },
+      {
+        "id": "intro-diff-mi",
+        "title": "查找统计显著的空间聚类",
+        "content": "GeoDa 长期以来支持空间自相关的单变量和双变量局部检验，如局部 Moran。现在该程序还包括局部 G/G*，以及各种用于分类数据的局部连接计数统计。在此示例中，局部 Moran 聚类图识别了 2012 年和 2016 年总统选举中美国中部地区较高的共和党投票百分比（左）。共置连接计数图（右上）显示了两年中高-高聚类值在空间上的重叠，而差分局部 Moran 图揭示了 2016 年和 2012 年之间百分比点差异的聚类（右下）。",
+        "image": "img/Lisa.png",
+        "imageAlt": "LISA"
+      },
+      {
+        "id": "intro-clusters",
+        "title": "比较一套空间约束聚类技术",
+        "content": "GeoDa 现在有许多新技术来识别具有空间约束的聚类，包括 skater、redcap、max-p、k-means、k-medians、k-medoids 和谱聚类。以下是纽约 2008-2009 年外国出生的白人居民、外国出生的西班牙裔居民和月租金中位数如何聚类的几个示例。",
+        "image": "img/sc_clusters.png",
+        "imageAlt": "空间聚类"
+      },
+      {
+        "id": "intro-diff-mi-2",
+        "title": "确定时间变化是否在空间上聚类",
+        "content": "使用全局或局部差分 Moran's I 检验来找出给定位置变量随时间的变化是否与其邻居在统计上相关。例如，这个局部（LISA）聚类图显示了纽约的热点，其中儿童比例在 2002 年至 2008 年间变化较大（以及变化较小的冷点）。",
+        "image": "img/DiffMI.png",
+        "imageAlt": "差分 Moran's I"
+      },
+      {
+        "id": "intro-multivariate",
+        "title": "测试多个变量是否在空间中聚类",
+        "content": "Luc Anselin（2017）最近扩展了 Geary's c，提出了新的空间关联局部指标。这应用于法国道德统计的经典数据集（Guerry，1833），以显示识字率的显著高低空间集中（左图）以及财产犯罪与识字率的显著关联（右图）。",
+        "image": "img/localGeary.png",
+        "imageAlt": "局部 Geary",
+        "links": [
+          {
+            "text": "Luc Anselin（2017）",
+            "href": "/docs/LA_multivariateGeary1.pdf",
+            "external": true
+          }
+        ]
+      },
+      {
+        "id": "intro-nonspatial",
+        "title": "映射非空间聚类统计的模式",
+        "content": "您现在可以映射几种经典非空间聚类技术的模式，包括主成分分析（左图）、k-means（右上）和层次聚类（右下）以及多维缩放。使用与上述示例相同的数据，下面的地图显示了财产犯罪、识字率和自杀的局部聚类。",
+        "image": "img/nonspatial_clusters.png",
+        "imageAlt": "非空间聚类"
+      },
+      {
+        "id": "intro-corr",
+        "title": "找到空间相关性结束的阈值",
+        "content": "现在可以使用非参数空间自相关检验（相关图）来确定相邻对值不再相关的距离阈值。",
+        "image": "img/corr.png",
+        "imageAlt": "相关图"
+      },
+      {
+        "id": "intro-cat",
+        "title": "探索灵活数据分类的影响",
+        "content": "使用新的分类编辑器，您可以探索结果对数据分类阈值变化的敏感性。在此示例中，条件图（右）中的阈值基于可以在分类编辑器（左）中调整的分类。",
+        "image": "img/cat_editor.png",
+        "imageAlt": "分类编辑器"
+      }
+    ]
+  },
+  "dependencies": {
+    "title": "依赖项",
+    "description": "GeoDa 在 GPL 许可证下发布。它基于几个开源库和源代码文件。以下是我们想要致谢的关键项目列表。",
+    "items": [
+      {
+        "name": "GDAL 库，版本 1.10",
+        "license": "X/MIT 风格开源许可证",
+        "authors": "多人",
+        "link": "https://www.gdal.org/"
+      },
+      {
+        "name": "Boost 库，版本 1.53",
+        "license": "Boost 软件许可证 - 版本 1.0",
+        "authors": "多人",
+        "link": "https://www.boost.org/"
+      },
+      {
+        "name": "wxWidgets 跨平台 GUI 库，版本 2.9.4",
+        "license": "wxWindows 库许可证",
+        "authors": "Julian Smart、Robert Roebling 等",
+        "link": "https://www.wxwidgets.org/"
+      },
+      {
+        "name": "CLAPACK 线性代数库，版本 3.2.1",
+        "license": "田纳西大学定制",
+        "authors": "多人",
+        "link": "https://www.netlib.org/clapack/"
+      },
+      {
+        "name": "近似最近邻库，版本 0.1",
+        "license": "参见包含源文件中的 kNN/AHH.h",
+        "authors": "Sunil Arya 和 David Mount",
+        "link": "https://www.cs.umd.edu/~mount/ANN/",
+        "note": "0.1 版本的完整源代码包含在 kNN 目录中"
+      },
+      {
+        "name": "FastArea.c++ 源代码",
+        "license": "未知",
+        "authors": "Daniel Sunday",
+        "link": "https://jgt.akpeters.com/papers/Sunday02/FastArea.html",
+        "note": "findArea 和 ComputeArea2D 函数的源代码来自 FastArea.c++ 中的 GenGeomAlgs.h 文件，发表于 Journal of Graphics Tools，7(2):9-13，2002"
+      },
+      {
+        "name": "logger.h 源代码",
+        "license": "Boost 软件许可证 - 版本 1.0",
+        "authors": "Seweryn Habdank-Wojewodzki",
+        "link": "https://accu.org/index.php/journals/1304",
+        "note": "我们复制了 logger.h 的源代码并稍作修改以与 wxString 配合使用"
+      },
+      {
+        "name": "nullstream.h 源代码",
+        "license": "参见包含源文件中的 logger.h",
+        "authors": "Maciej Sobczak",
+        "link": "https://www.msobczak.com/"
+      },
+      {
+        "name": "C 聚类库",
+        "license": "Python 许可证",
+        "authors": "Hoon, Michiel de, Seiya Imoto, Satoru Miyano.（2013）。东京大学，医学科学研究所，人类基因组中心",
+        "link": "https://bonsai.hgc.jp/~mdehoon/software/cluster/cluster.pdf"
+      }
+    ]
+  },
+  "acknowledgments": {
+    "title": "致谢",
+    "content": "GeoDa 的开发最近得到了美国国家科学基金会、美国国家卫生研究院、美国国家司法研究所和医疗保健研究与质量局的支持。"
+  },
+  "support": {
+    "title": "支持",
+    "content": "我们目前正在更新文档以反映 GeoDa 1.22 中的新功能。Openspace 邮件列表支持 GeoDa 的技术问题。",
+    "links": [
+      {
+        "text": "文档",
+        "href": "./documentation"
+      },
+      {
+        "text": "Openspace 邮件列表",
+        "href": "./support"
+      }
+    ]
+  },
+  "license": {
+    "title": "许可证",
+    "content": "GeoDa 使用 GPL 许可证（通用公共许可证）。",
+    "links": [
+      {
+        "text": "GPL 许可证（通用公共许可证）",
+        "href": "https://www.gnu.org/licenses/gpl-3.0.en.html",
+        "external": true
+      }
+    ]
+  },
+  "contact": {
+    "title": "联系",
+    "content": "有问题？联系我们。",
+    "links": [
+      {
+        "text": "我们",
+        "href": "mailto:spatial@uchicago.edu"
+      }
+    ]
+  },
+  "donate": {
+    "title": "捐赠",
+    "content": "通过在此处捐款帮助我们保持 GeoDa 免费。感谢您支持免费和开源的空间软件！",
+    "links": [
+      {
+        "text": "此处",
+        "href": "https://giving.uchicago.edu/site/Donation2?1838.donation=form1&df_id=1838&mfc_pref=T&set.Designee=1901",
+        "external": true
+      }
+    ],
+    "image": "img/donate.png",
+    "imageAlt": "捐赠给 GeoDa"
+  }
+} 

@@ -95,10 +95,13 @@ h6:hover .anchor {
   font-size: 18px !important;
 }
 
-/* Ensure language dropdown appears above other content */
+/* Ensure language dropdown appears above other content but below sidebar */
 .navbar__items {
   position: relative;
-  z-index: 1001;
+}
+
+.navbar__toggle {
+  display: none;
 }
 
 .navbar__title:hover {
@@ -209,6 +212,14 @@ h6:hover .anchor {
   line-height: 1.5 !important;
   margin-bottom: 1em !important;
 }
+
+/* ===== BLOG POST TITLE STYLES ===== */
+
+/* Blog post title styling - these are h2 elements with title class */
+article h2 {
+  font-size: 2.0rem !important;
+}
+
 
 /* ===== RESPONSIVE MAIN CONTENT ===== */
 

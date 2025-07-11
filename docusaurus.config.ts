@@ -92,18 +92,13 @@ const config: Config = {
       },
       items: [
         {
+          href: '/blog',
+          label: 'Blog',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/GeoDaCenter/geoda',
           label: 'GitHub',
-          position: 'right',
-        },
-        {
-          href: '/download',
-          label: 'Download',
-          position: 'right',
-        },
-        {
-          href: '/support',
-          label: 'Support',
           position: 'right',
         },
       ],

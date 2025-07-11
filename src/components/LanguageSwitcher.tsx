@@ -69,7 +69,10 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className }) => {
           textDecoration: 'none',
           fontWeight: '500',
           transition: 'color 0.2s ease',
-          fontFamily: 'inherit'
+          fontFamily: 'inherit',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '6px'
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)';
@@ -78,6 +81,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className }) => {
           e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
         }}
       >
+        <span style={{ fontSize: '18px', lineHeight: 1 }}>🌐</span>
         Language
       </button>
 

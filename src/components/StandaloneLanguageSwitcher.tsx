@@ -20,6 +20,7 @@ const setLocalStorageItem = (key: string, value: string): void => {
 };
 
 const StandaloneLanguageSwitcher: React.FC<StandaloneLanguageSwitcherProps> = ({ className }) => {
+  console.log('StandaloneLanguageSwitcher rendered with globe icon');
   const [currentLocale, setCurrentLocale] = useState('en');
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -125,7 +126,10 @@ const StandaloneLanguageSwitcher: React.FC<StandaloneLanguageSwitcherProps> = ({
           textDecoration: 'none',
           fontWeight: '500',
           transition: 'color 0.2s ease',
-          fontFamily: 'inherit'
+          fontFamily: 'inherit',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '6px'
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)';
@@ -134,6 +138,7 @@ const StandaloneLanguageSwitcher: React.FC<StandaloneLanguageSwitcherProps> = ({
           e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
         }}
       >
+        <span style={{ fontSize: '18px', lineHeight: 1 }}>🌐</span>
         Language
       </button>
 

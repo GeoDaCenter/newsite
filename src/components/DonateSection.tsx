@@ -38,7 +38,7 @@ export default function DonateSection({ title, content, links, image, imageAlt }
       {links && links.length > 0 && links[0] && links[0].href && (
         <p>
           <a href={links[0].href}>
-            <img src={getImagePath(image)} alt={imageAlt} />
+            <img src={image} alt={imageAlt} />
           </a>
         </p>
       )}

@@ -95,6 +95,12 @@ h6:hover .anchor {
   font-size: 18px !important;
 }
 
+/* Ensure language dropdown appears above other content */
+.navbar__items {
+  position: relative;
+  z-index: 1001;
+}
+
 .navbar__title:hover {
   color: rgba(255, 255, 255, 0.8) !important;
   text-decoration: none;

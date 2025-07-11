@@ -91,13 +91,6 @@ const config: Config = {
         srcDark: 'img/geoda-official-logo.png',
       },
       items: [
-        // {
-        //   type: 'docSidebar',
-        //   sidebarId: 'tutorialSidebar',
-        //   position: 'left',
-        //   label: 'Documentation',
-        // },
-        // {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/GeoDaCenter/geoda',
           label: 'GitHub',
@@ -113,7 +106,6 @@ const config: Config = {
           label: 'Support',
           position: 'right',
         },
-
       ],
     },
     footer: {

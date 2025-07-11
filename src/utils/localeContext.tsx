@@ -35,6 +35,19 @@ export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children }) => {
     }
   }, [location.pathname]);
 
+  // Listen for language change events from the standalone switcher
+  useEffect(() => {
+    const handleLanguageChange = (event: CustomEvent) => {
+      setCurrentLocaleState(event.detail.locale);
+    };
+
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
+    
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
+    };
+  }, []);
+
   const setCurrentLocale = (locale: string) => {
     setCurrentLocaleState(locale);
   };

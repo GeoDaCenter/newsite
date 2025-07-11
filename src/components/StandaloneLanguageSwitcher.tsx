@@ -1,20 +1,50 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useLocale } from '../utils/localeContext';
 
-interface LanguageSwitcherProps {
+interface StandaloneLanguageSwitcherProps {
   className?: string;
 }
 
-const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className }) => {
-  const { currentLocale, setCurrentLocale, locales } = useLocale();
+const StandaloneLanguageSwitcher: React.FC<StandaloneLanguageSwitcherProps> = ({ className }) => {
+  const [currentLocale, setCurrentLocale] = useState('en');
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const locales = [
+    { code: 'en', label: 'English' },
+    { code: 'zh-Hans', label: '中文' },
+    { code: 'es', label: 'Español' }
+  ];
+
   const switchLanguage = (newLocale: string) => {
     if (newLocale === currentLocale) return;
+    
+    // Update the locale state
     setCurrentLocale(newLocale);
     setIsOpen(false);
+    
+    // Dispatch a custom event to notify other components
+    const event = new CustomEvent('languageChanged', { 
+      detail: { locale: newLocale } 
+    });
+    window.dispatchEvent(event);
+    
+    // Update localStorage for persistence
+    localStorage.setItem('preferredLanguage', newLocale);
   };
+
+  // Initialize locale from localStorage or URL
+  useEffect(() => {
+    const savedLocale = localStorage.getItem('preferredLanguage');
+    const path = window.location.pathname;
+    
+    if (path.includes('/zh-Hans/')) {
+      setCurrentLocale('zh-Hans');
+    } else if (path.includes('/es/')) {
+      setCurrentLocale('es');
+    } else if (savedLocale && locales.some(l => l.code === savedLocale)) {
+      setCurrentLocale(savedLocale);
+    }
+  }, []);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -162,4 +192,4 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className }) => {
   );
 };
 
-export default LanguageSwitcher; 
+export default StandaloneLanguageSwitcher; 

@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './MainContent.module.css';
+import { getFilePath } from '../utils/imagePath';
 
 interface Button {
   text: string;
@@ -10,15 +11,17 @@ interface DownloadButtonsProps {
   buttons: Button[];
 }
 
-export default function DownloadButtons({ buttons }: DownloadButtonsProps): React.JSX.Element {
+export default function DownloadButtons({
+  buttons,
+}: DownloadButtonsProps): React.JSX.Element {
   return (
     <section className={styles.mainContent}>
       <br />
       <p style={{ textAlign: 'center' }}>
         {buttons.map((button, index) => (
-          <a 
+          <a
             key={index}
-            href={button.href} 
+            href={getFilePath(button.href)}
             className={`btn ${index === 3 ? 'nightly-btn' : 'download-btn'}`}
           >
             {button.text}
@@ -28,4 +31,4 @@ export default function DownloadButtons({ buttons }: DownloadButtonsProps): Reac
       <br />
     </section>
   );
-} 
+}

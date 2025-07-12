@@ -35,11 +35,6 @@ function DownloadContent(): React.JSX.Element {
   const localizedSiteCommon = useLocalizedContent(siteCommon);
   const localizedDownloadContent = useLocalizedContentFile('downloadContent.json', downloadContent);
   
-  // Debug logging
-  console.log('Download page - Current locale from context:', localizedSiteCommon);
-  console.log('Download page - Localized download content:', localizedDownloadContent);
-  console.log('Download page - Original download content:', downloadContent);
-
   useEffect(() => {
     // Load country download data
     fetch(getFilePath('data/down_by_country.csv'))

@@ -8,7 +8,47 @@ This guide provides detailed steps for adding new blog posts to the GeoDa Docusa
 - Basic knowledge of Markdown syntax
 - Image files ready (if needed)
 
-## 🚀 Quick Start
+## 🚀 Shortcut
+
+### Quick Blog Post Addition (Direct to Main)
+
+If you have write access to the main branch and want to add a simple blog post quickly:
+
+1. **Create your blog post file** in the `blog/` directory:
+   ```bash
+   # Navigate to blog directory
+   cd blog
+   
+   # Create a new markdown file with date prefix
+   touch YYYY-MM-DD-your-post-title.md
+   ```
+
+2. **Add content** to your file with proper frontmatter:
+   ```markdown
+   ---
+   title: Your Blog Post Title
+   authors: [existing-author-id]
+   tags: [existing-tag1, existing-tag2]
+   ---
+
+   Your blog post content here...
+   ```
+
+3. **Commit and push directly to main**:
+   ```bash
+   git add blog/YYYY-MM-DD-your-post-title.md
+   git commit -m "Add blog post: [Your Post Title]"
+   git push origin main
+   ```
+
+4. **Automatic deployment**:
+   - GitHub Actions will automatically build and deploy
+   - Your post will be live at `https://geodacenter.github.io/newsite/blog/` within minutes
+
+**Note**: This shortcut is for simple posts using existing authors and tags. For new authors, tags, or complex posts with images, follow the full guide below.
+
+
+## Quick Start
 
 1. **Clone the repository** (if not already done):
    ```bash

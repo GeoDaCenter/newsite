@@ -1,5 +1,9 @@
 {
   "mainContent": {
+    "announce": {
+      "text": "🚀 ¡NUEVA FUNCIÓN! Soporte Mejorado de Múltiples Capas con Agrupación Avanzada ¡Disponible Ahora! ¡Haz Clic para Saber Más! 🎯",
+      "url": "/documentation"
+    },
     "intro": {
       "title": "Presentando GeoDa 1.22",
       "content": [

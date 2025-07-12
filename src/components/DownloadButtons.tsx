@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './MainContent.module.css';
-import { getFilePath } from '../utils/imagePath';
 
 interface Button {
   text: string;
@@ -21,7 +20,7 @@ export default function DownloadButtons({
         {buttons.map((button, index) => (
           <a
             key={index}
-            href={getFilePath(button.href)}
+            href={button.href}
             className={`btn ${index === 3 ? 'nightly-btn' : 'download-btn'}`}
           >
             {button.text}

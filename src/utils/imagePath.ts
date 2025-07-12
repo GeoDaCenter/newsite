@@ -11,3 +11,13 @@ export function getImagePath(imagePath: string): string {
   // In development, return the path as-is
   return imagePath;
 } 
+
+export function getFilePath(filePath: string): string {
+  // Check if we're in production mode
+  if (process.env.NODE_ENV === 'production') {
+    // In production, prepend "../" to file paths
+    return `../${filePath}`;
+  }
+  // In development, return the path as-is
+  return filePath;
+} 

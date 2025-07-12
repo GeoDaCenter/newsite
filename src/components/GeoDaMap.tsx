@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styles from '../pages/download.module.css';
+import { getFilePath } from '../utils/imagePath';
 
 interface GeoDaMapProps {
   mapView: '3d' | '2d';
@@ -185,9 +186,9 @@ export default function GeoDaMap({ mapView, countryDownloads }: GeoDaMapProps): 
 
         // Load data exactly like original
         window.queue()
-          .defer(window.d3.json, './data/world-110m.json')
-          .defer(window.d3.tsv, './data/world-110m-country-names.tsv')
-          .defer(window.d3.csv, './data/down_by_country.csv')
+          .defer(window.d3.json, getFilePath('data/world-110m.json'))
+          .defer(window.d3.tsv, getFilePath('data/world-110m-country-names.tsv'))
+          .defer(window.d3.csv, getFilePath('data/down_by_country.csv'))
           .await(ready);
 
         // Main function - exactly like original

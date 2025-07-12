@@ -34,6 +34,25 @@ const config: Config = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'zh-Hans', 'es', 'de'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+      },
+      'zh-Hans': {
+        label: '中文',
+      },
+      es: {
+        label: 'Español',
+      },
+      de: {
+        label: 'Deutsch',
+      },
+    },
+  },
+
 
 
   presets: [

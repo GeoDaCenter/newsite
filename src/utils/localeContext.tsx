@@ -35,7 +35,7 @@ export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children }) => {
   const getInitialLocale = () => {
     const savedLocale = getLocalStorageItem('preferredLanguage');
     console.log(`LocaleProvider - Initializing locale. Saved locale: ${savedLocale}`);
-    if (savedLocale && ['en', 'zh-Hans', 'es'].includes(savedLocale)) {
+    if (savedLocale && ['en', 'zh-Hans', 'es', 'de'].includes(savedLocale)) {
       console.log(`LocaleProvider - Using saved locale: ${savedLocale}`);
       return savedLocale;
     }
@@ -48,7 +48,8 @@ export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children }) => {
   const locales = [
     { code: 'en', label: 'English' },
     { code: 'zh-Hans', label: '中文' },
-    { code: 'es', label: 'Español' }
+    { code: 'es', label: 'Español' },
+    { code: 'de', label: 'Deutsch' }
   ];
 
   // Update locale based on URL path, but only if no saved locale exists
@@ -57,11 +58,13 @@ export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children }) => {
     const path = location.pathname;
     
     // Only override with URL-based detection if no saved locale exists
-    if (!savedLocale || !['en', 'zh-Hans', 'es'].includes(savedLocale)) {
+    if (!savedLocale || !['en', 'zh-Hans', 'es', 'de'].includes(savedLocale)) {
       if (path.includes('/zh-Hans/')) {
         setCurrentLocaleState('zh-Hans');
       } else if (path.includes('/es/')) {
         setCurrentLocaleState('es');
+      } else if (path.includes('/de/')) {
+        setCurrentLocaleState('de');
       } else {
         setCurrentLocaleState('en');
       }

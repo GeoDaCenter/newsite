@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styles from './MainContent.module.css';
+import { getFilePath } from '../utils/imagePath';
 
 declare global {
   interface Window {
@@ -64,7 +64,7 @@ export default function DownloadChart(): React.JSX.Element {
       setError(null);
 
       try {
-        const response = await fetch('data/download_data.json');
+        const response = await fetch(getFilePath('data/download_data.json'));
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

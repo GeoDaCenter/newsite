@@ -28,7 +28,8 @@ const StandaloneLanguageSwitcher: React.FC<StandaloneLanguageSwitcherProps> = ({
   const locales = [
     { code: 'en', label: 'English' },
     { code: 'zh-Hans', label: '中文' },
-    { code: 'es', label: 'Español' }
+    { code: 'es', label: 'Español' },
+    { code: 'de', label: 'Deutsch' }
   ];
 
   const switchLanguage = (newLocale: string) => {
@@ -57,6 +58,8 @@ const StandaloneLanguageSwitcher: React.FC<StandaloneLanguageSwitcherProps> = ({
       setCurrentLocale('zh-Hans');
     } else if (path.includes('/es/')) {
       setCurrentLocale('es');
+    } else if (path.includes('/de/')) {
+      setCurrentLocale('de');
     } else if (savedLocale && locales.some(l => l.code === savedLocale)) {
       setCurrentLocale(savedLocale);
     }

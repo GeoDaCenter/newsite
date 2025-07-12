@@ -12,6 +12,7 @@ import DownloadChart from '../components/DownloadChart';
 import downloadContent from '../data/downloadContent.json';
 import siteCommon from '../data/siteCommon.json';
 import { useLocalizedContent, useLocalizedContentFile } from '../utils/contentLoader';
+import { getFilePath } from '../utils/imagePath';
 
 interface CountryDownload {
   id: string;
@@ -41,7 +42,7 @@ function DownloadContent(): React.JSX.Element {
 
   useEffect(() => {
     // Load country download data
-    fetch('data/down_by_country.csv')
+    fetch(getFilePath('data/down_by_country.csv'))
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
